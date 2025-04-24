@@ -1,29 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title></title>
+    <style>
+      body {
+        font-family: "Arial";
+        background-color: #e6f0f7;
+        text-align: center;
+        padding: 20px;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 5px;
+      }
+      h2 {
+        margin-top: 30px;
+        color: #444;
+      }
+      .table {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .column {
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .column h3 {
+        margin-top: 0;
+        background-color: #87ceeb;
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+      }
+      .seat {
+        display: inline-block;
+        margin: 3px;
+        background-color: #fef1e6;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 5px 10px;
+        font-size: 14px;
+        text-decoration: none;
+        color: #333;
+      }
+      .seat:hover {
+        background-color: #ffcc99;
+      }
+    </style>
   </head>
   <body>
-    <h1>HTML 실습</h1>
-    <h2>1일차</h2>
-    <!-- (a[href="ex01-0$.html"]{예제 $}+br)*9 -->
-    <a href="ex01-01.html">예제 1</a><br />
-    <a href="ex01-02.html">예제 2</a><br />
-    <a href="ex01-03.html">예제 3</a><br />
-    <a href="ex01-04.html">예제 4</a><br />
-    <a href="ex01-05.html">예제 5</a><br />
-    <a href="ex01-06.html">예제 6</a><br />
-    <a href="ex01-07.html">예제 7</a><br />
-    <a href="ex01-08.html">예제 8</a><br />
-    <a href="ex01-09.html">예제 9</a><br />
-    <h2>2일차</h2>
-    <a href="ex02-01.html">예제 1</a><br />
-    <a href="ex02-01(a0).html">예제 1-0</a><br />
-    <a href="ex02-01(a1).html">예제 1-1</a><br />
-    <a href="ex02-01(a2).html">예제 1-2</a><br />
-    <a href="ex02-02.html">예제 2</a><br />
-    <a href="ex02-03.html">예제 3</a><br />
+    <h1>HTML 특강</h1>
+    <p>데이터크롤링 대비</p>
+    <div class="table">
+      <!-- 1일차 -->
+      <div class="column">
+        <h3>1일차</h3>
+        <a href="ex01-01.html" class="seat">예제 1</a><br />
+        <a href="ex01-02.html" class="seat">예제 2</a><br />
+        <a href="ex01-03.html" class="seat">예제 3</a><br />
+        <a href="ex01-04.html" class="seat">예제 4</a><br />
+        <a href="ex01-05.html" class="seat">예제 5</a><br />
+        <a href="ex01-06.html" class="seat">예제 6</a><br />
+        <a href="ex01-07.html" class="seat">예제 7</a><br />
+        <a href="ex01-08.html" class="seat">예제 8</a><br />
+        <a href="ex01-09.html" class="seat">예제 9</a><br />
+      </div>
+
+      <!-- 2일차 -->
+      <div class="column">
+        <h3>2일차</h3>
+        <a href="ex02-01.html" class="seat">예제 1</a><br />
+        <a href="ex02-01(a0).html" class="seat">예제 1-0</a><br />
+        <a href="ex02-01(a1).html" class="seat">예제 1-1</a><br />
+        <a href="ex02-01(a2).html" class="seat">예제 1-2</a><br />
+        <a href="ex02-02.html" class="seat">예제 2</a><br />
+        <a href="ex02-03.html" class="seat">예제 3</a><br />
+      </div>
+    </div>
   </body>
 </html>
