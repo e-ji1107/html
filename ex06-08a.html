@@ -30,5 +30,13 @@
       <li>사이트맵</li>
       <li>고객센터</li>
     </ul>
+    <script>
+      const pt = document.querySelectorAll("li");
+      pt.forEach((v) => {
+        v.addEventListener("click", () => {
+          alert(v, "누르지마!!");
+        });
+      });
+    </script>
   </body>
 </html>
