@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid 레이아웃</title>
+    <style>
+      :root {
+        --myp1: rgb(217, 140, 253);
+        --myp2: rgb(203, 95, 253);
+        --myp3: rgb(237, 203, 253);
+        --myg1: rgb(60, 252, 188);
+        --myg2: rgb(167, 252, 238);
+        --myg3: rgb(201, 247, 248);
+        --myr1: rgb(255, 37, 37);
+        --myr2: rgb(250, 115, 115);
+        --myr3: rgb(250, 209, 209);
+        --myb1: rgb(116, 115, 202);
+        --myb2: rgb(154, 155, 253);
+        --myb3: rgb(174, 245, 177);
+      }
+      div {
+        margin: 3px;
+        border: 2px solid #999;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        color: white;
+      }
+      .wrap {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 100px 200px 100px 100px;
+      }
+      #grid1 {
+        background-color: var(--myp1);
+        grid-column-start: 1;
+        grid-column-end: 3;
+        /* grid-row-start: 1; */
+        /* grid-row-end: 2; */
+      }
+      #grid2 {
+        background-color: var(--myp2);
+        grid-column-start: 3;
+        grid-column-end: 4;
+        /* grid-row-start: 1; */
+        /* grid-row-end: 2; */
+      }
+      #grid3 {
+        background-color: var(--myr3);
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 4;
+      }
+      #grid4 {
+        background-color: var(--myg2);
+        grid-column-start: 2;
+        grid-column-end: 3;
+      }
+      #grid5 {
+        background-color: var(--myb3);
+        grid-column-start: 2;
+        grid-column-end: 3;
+      }
+      #grid6 {
+        background-color: var(--myb2);
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      #grid7 {
+        background-color: var(--myr1);
+        grid-column-start: 3;
+        grid-column-end: 4;
+      }
+      #grid8 {
+        background-color: var(--myb1);
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 4;
+        grid-row-end: 6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- div.wrap>div#grid${GRID$}*6 -->
+    <div class="wrap">
+      <div id="grid1">GRID1</div>
+      <div id="grid2">GRID2</div>
+      <div id="grid3">GRID3</div>
+      <div id="grid4">GRID4</div>
+      <div id="grid5">GRID5</div>
+      <div id="grid6">GRID6</div>
+      <div id="grid7">GRID7</div>
+      <div id="grid8">GRID8</div>
+    </div>
+  </body>
+</html>
