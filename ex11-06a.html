@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 300px;
+      }
+      tr,
+      td {
+        border: 1px solid blue;
+        padding: 5px;
+      }
+    </style>
+    <script>
+      const inp = prompt("원하는 값을 입력하세요.");
+      const list = `<table>
+      <tr>
+        <td>${inp}x1</td>
+        <td>${inp * 1}</td>
+      </tr>
+      <tr>
+        <td>${inp}x2</td>
+        <td>${inp * 2}</td>
+      </tr>
+      <tr>
+        <td>${inp}x3</td>
+        <td>${inp * 3}</td>
+      </tr>
+      <tr>
+        <td>${inp}x4</td>
+        <td>${inp * 4}</td>
+      </tr>
+      <tr>
+        <td>${inp}x5</td>
+        <td>${inp * 5}</td>
+      </tr>
+      <tr>
+        <td>${inp}x6</td>
+        <td>${inp * 6}</td>
+      </tr>
+      <tr>
+        <td>${inp}x7</td>
+        <td>${inp * 7}</td>
+      </tr>
+      <tr>
+        <td>${inp}x8</td>
+        <td>${inp * 8}</td>
+      </tr>
+      <tr>
+        <td>${inp}x9</td>
+        <td>${inp * 9}</td>
+      </tr>
+    </table>`;
+      document.write(list);
+    </script>
+  </head>
+  <body>
+    <!-- table>(tr>td*2)*4 -->
+  </body>
+</html>

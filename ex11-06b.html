@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+    <script>
+      let list = "";
+      list += "<ul>";
+      list += "</ul>";
+      list += "<h2>&& and </h2>";
+      list += '<table class="a">';
+      list += `<tr><td>좌변</td><td>우변</td><td>결과</td></tr>`;
+      list += `<tr><td>true</td><td>true</td><td>${true & true}</td></tr>`;
+      list += `<tr><td>true</td><td>false</td><td>${true & false}</td></tr>`;
+      list += `<tr><td>false</td><td>true</td><td>${false & true}</td></tr>`;
+      list += `<tr><td>false</td><td>false</td><td>${false & false}</td></tr>`;
+      list += `</table>`;
+      list += `<h2>|| or </h2>`;
+      list += "<table class=`a`>";
+      list += `<tr><td>좌변</td><td>우변</td><td>결과</td></tr>`;
+      list += `<tr><td>true</td><td>true</td><td>${true || true}</td></tr>`;
+      list += `<tr><td>true</td><td>false</td><td>${true || false}</td></tr>`;
+      list += `<tr><td>false</td><td>true</td><td>${false || true}</td></tr>`;
+      list += `<tr><td>false</td><td>false</td><td>${false || false}</td></tr>`;
+      list += `</table>`;
+      document.write(list);
+    </script>
+  </head>
+  <body></body>
+</html>
