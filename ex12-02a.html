@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const inp = +prompt("점수를 입력하세요."); //+ prompt()는 문자열을 숫자로 변환
+      if (inp > 100) {
+        console.log("잘못된 점수입니다.");
+        alert("잘못된 점수입니다.");
+        document.write("잘못된 점수입니다.");
+      } else if (inp < 0) {
+        console.log("잘못된 점수입니다.");
+        alert("잘못된 점수입니다.");
+        document.write("잘못된 점수입니다.");
+      } else if (inp === 100) {
+        console.log("학점: A+");
+        alert("학점: A+");
+        document.write("학점: A+");
+      } else if (inp >= 90) {
+        console.log("학점: A");
+        alert("학점: A");
+        document.write("학점: A");
+      } else if (inp >= 80) {
+        console.log("학점: B");
+        alert("학점: B");
+        document.write("학점: B");
+      } else if (inp >= 70) {
+        console.log("학점: C");
+        alert("학점: C");
+        document.write("학점: C");
+      } else if (inp >= 60) {
+        console.log("학점: D");
+        alert("학점: D");
+        document.write("학점: D");
+      } else {
+        console.log("학점: F");
+        alert("학점: F");
+        document.write("학점: F");
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
