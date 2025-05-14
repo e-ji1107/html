@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자리배치도</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        margin: 20px auto;
+      }
+      td {
+        border: 1px solid #333;
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="seating"></table>
+    <script>
+      const perRow = +prompt("한 줄에 몇 명");
+      const total = +prompt("전체 몇명");
+      const table = document.getElementById("seating");
+      let num = 1;
+      let rows = Math.ceil(total / perRow);
+
+      for (let i = 0; i < rows; i++) {
+        let tr = document.createElement("tr");
+        for (let j = 0; j < perRow; j++) {
+          let td = document.createElement("td");
+          if (num <= total) {
+            td.textContent = num++;
+          }
+          tr.appendChild(td);
+        }
+        table.appendChild(tr);
+      }
+    </script>
+  </body>
+</html>

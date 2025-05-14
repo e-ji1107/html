@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <style></style>
+  </head>
+
+  <body>
+    <body>
+      <script>
+        const now = dayjs();
+        const random = now.get("ms") % 2;
+        console.log(random);
+
+        if (random == 0) {
+          document.body.innerHTML = `<p>죽었습니다</p>`;
+        } else {
+          document.body.innerHTML = `<p>살았습니다</p>`;
+        }
+      </script>
+    </body>
+  </body>
+</html>

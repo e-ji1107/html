@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      body {
+        font-family: "Arial";
+      }
       table {
         border-collapse: collapse;
       }
@@ -28,27 +31,30 @@
       table tr:nth-child(2) td:nth-child(n + 18) {
         background: #ffcdd2;
       }
-    </style>
-    <script>
-      const tem = prompt("현재 온도를 입력하세요: ");
-      const txt1 = "보통이에요";
-      const txt2 = "시원하네요";
-      const txt3 = "갑갑하네요";
-      const txt4 = "정상온도에서 이하로 벗어났습니다.";
-      const txt5 = "정상온도를 넘겼습니다.";
 
-      if (tem < 16) {
-        document.write("지금 온도는" + tem + "도 이며, 상태는 " + txt1);
-      } else if (tem < 22) {
-        document.write("지금 온도는" + tem + "도 이며, 상태는 " + txt2);
-      } else if (tem < 28) {
-        document.write("지금 온도는" + tem + "도 이며, 상태는 " + txt3);
-      } else if (tem < 32) {
-        document.write("지금 온도는" + tem + "도 이며, 상태는 " + txt4);
-      } else if (tem >= 32) {
-        document.write("지금 온도는" + tem + "도 이며, 상태는 " + txt5);
+      #result {
+        margin-top: 20px;
+        font-size: 1.3rem;
+        color: #b53ffa;
+        font-weight: bold;
+        text-align: center;
       }
-    </script>
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .blinking-text {
+        animation: blink 2s infinite; /* 1초 간격으로 무한 반복 */
+      }
+    </style>
   </head>
   <body>
     <table border="1">
@@ -92,5 +98,34 @@
         <td id="three_5" colspan="6"></td>
       </tr>
     </table>
+    <div id="result"></div>
+    <script>
+      const tem = prompt("현재 온도를 입력하세요: ");
+      const txt1 = "보통이에요";
+      const txt2 = "시원하네요";
+      const txt3 = "갑갑하네요";
+      const txt4 = "정상온도에서 이하로 벗어났습니다.";
+      const txt5 = "정상온도를 넘겼습니다.";
+
+      let resultText = "";
+      if (tem < 16) {
+        document.getElementById("three_1").innerText = txt1;
+        resultText = "지금 온도는 " + tem + "도 이며, 상태는 " + txt1;
+      } else if (tem < 22) {
+        document.getElementById("three_2").innerText = txt2;
+        resultText = "지금 온도는 " + tem + "도 이며, 상태는 " + txt2;
+      } else if (tem < 28) {
+        document.getElementById("three_3").innerText = txt3;
+        resultText = "지금 온도는 " + tem + "도 이며, 상태는 " + txt3;
+      } else if (tem < 32) {
+        document.getElementById("three_4").innerText = txt4;
+        resultText = "지금 온도는 " + tem + "도 이며, 상태는 " + txt4;
+      } else if (tem >= 32) {
+        document.getElementById("three_5").innerText = txt5;
+        resultText = "지금 온도는 " + tem + "도 이며, 상태는 " + txt5;
+      }
+      document.getElementById("result").innerHTML =
+        '<span class="blinking-text">' + resultText + "</span>";
+    </script>
   </body>
 </html>
