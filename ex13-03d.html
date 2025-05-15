@@ -25,10 +25,10 @@
       const total = +prompt("전체 몇명");
       const table = document.getElementById("seating");
       let num = 1;
-      let rows = Math.ceil(total / perRow);
+      let rows = Math.ceil(total / perRow); // math.ceil 소수점 올림, meth.round 반올림, math.floor 내림
 
       for (let i = 0; i < rows; i++) {
-        let tr = document.createElement("tr");
+        let tr = document.createElement("tr"); // 웹(document)에 tr 태그 생성
         for (let j = 0; j < perRow; j++) {
           let td = document.createElement("td");
           if (num <= total) {
