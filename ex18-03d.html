@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>초시계</title>
+    <style>
+      .clock {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+        border-radius: 50%;
+        margin: 50px auto;
+        background: #fff;
+      }
+      .second {
+        position: absolute;
+        left: 50%;
+        bottom: 50%;
+        transform-origin: bottom center;
+        background: #f8a0e5;
+        border-radius: 4px;
+        width: 2px;
+        height: 90px;
+        z-index: 1;
+      }
+      .center-dot {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 14px;
+        height: 14px;
+        background: #222;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        box-shadow: 0 0 4px #0006;
+      }
+      .digital {
+        text-align: center;
+        font-size: 2rem;
+        margin-top: 10px;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <button>start</button>
+    <button>stop</button>
+
+    <div class="clock">
+      <div class="hour"></div>
+      <div class="minute"></div>
+      <div class="second"></div>
+      <div class="center-dot"></div>
+    </div>
+
+    <div id="digital" class="digital"></div>
+    <script>
+      const digital = document.getElementById("digital");
+      const btns = document.querySelectorAll("button");
+      let timerId = null;
+      let sec = 0;
+
+      function updateStopwatch() {
+        const h = String(Math.floor(sec / 3600)).padStart(2, "0");
+        const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
+        const s = String(sec % 60).padStart(2, "0");
+        digital.textContent = `${h}:${m}:${s}`;
+
+        // 초침이 1초에 한 바퀴(360도) 돌도록
+        const deg = (sec % 1) * 360; // 항상 0이므로 아래처럼 수정
+        document.querySelector(
+          ".second"
+        ).style.transform = `translate(-50%, 0) rotate(${
+          (sec * 360) % 360
+        }deg)`;
+      }
+
+      btns[0].addEventListener("click", () => {
+        if (timerId) return;
+        timerId = setInterval(() => {
+          sec++;
+          updateStopwatch();
+        }, 1000);
+      });
+
+      btns[1].addEventListener("click", () => {
+        clearInterval(timerId);
+        timerId = null;
+      });
+
+      // 초기화
+      updateStopwatch();
+    </script>
+  </body>
+</html>

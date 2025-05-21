@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바늘 시계</title>
+    <style>
+      .clock {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+        border-radius: 50%;
+        margin: 50px auto;
+        background: #fff;
+      }
+      .hour,
+      .minute,
+      .second {
+        position: absolute;
+        left: 50%;
+        bottom: 50%;
+        transform-origin: bottom center;
+        background: #222;
+        border-radius: 4px;
+      }
+      .hour {
+        width: 8px;
+        height: 50px;
+        background: #333;
+        z-index: 3;
+      }
+      .minute {
+        width: 5px;
+        height: 70px;
+        background: #f9d3fa;
+        z-index: 2;
+      }
+      .second {
+        width: 2px;
+        height: 90px;
+        background: #c4fcf9;
+        z-index: 1;
+      }
+      .center-dot {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 14px;
+        height: 14px;
+        background: #222;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        box-shadow: 0 0 4px #0006;
+      }
+    </style>
+    <script>
+      function updateClock() {
+        const now = new Date();
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const second = now.getSeconds();
+
+        // 각도 계산
+        const hourDeg = (hour % 12) * 30 + (minute / 60) * 30; // 자연스럽기 위해 분 반영 ex) 3시반 -> 3,4 사이 시침
+        const minuteDeg = minute * 6 + (second / 60) * 6;
+        const secondDeg = second * 6;
+
+        document.querySelector(
+          ".hour"
+        ).style.transform = `translate(-50%, 0) rotate(${hourDeg}deg)`;
+        document.querySelector(
+          ".minute"
+        ).style.transform = `translate(-50%, 0) rotate(${minuteDeg}deg)`;
+        document.querySelector(
+          ".second"
+        ).style.transform = `translate(-50%, 0) rotate(${secondDeg}deg)`;
+      }
+
+      setInterval(updateClock, 1000); // 1초마다 updateClock 함수 호출해서 침이 움직임
+      window.onload = updateClock;
+    </script>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="hour"></div>
+      <div class="minute"></div>
+      <div class="second"></div>
+      <div class="center-dot"></div>
+    </div>
+  </body>
+</html>
