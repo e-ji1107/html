@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* 1부터 100까지 1씩 증가하는 배열을 만들어라 */
+      const arr = Array(100)
+        .fill(0)
+        .map((v, i) => i + 1);
+
+      arr.forEach((v) => {
+        if (v % 15 === 0) {
+          console.log("아싸");
+        } else if (v % 3 === 0) {
+          console.log("짝!");
+        } else if (v % 5 === 0) {
+          console.log("오~");
+        } else {
+          console.log(v);
+        }
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

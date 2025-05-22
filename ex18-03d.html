@@ -61,29 +61,28 @@
       const digital = document.getElementById("digital");
       const btns = document.querySelectorAll("button");
       let timerId = null;
-      let sec = 0;
+      let ms = 0;
 
       function updateStopwatch() {
-        const h = String(Math.floor(sec / 3600)).padStart(2, "0");
-        const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
-        const s = String(sec % 60).padStart(2, "0");
-        digital.textContent = `${h}:${m}:${s}`;
+        //const h = String(Math.floor(ms / 36000) / 10).padStart(2, "0"); // 시간
+        const m = String(Math.floor((ms / 600) % 60)).padStart(2, "0"); // 분
+        const s = String(Math.floor((ms / 10) % 60)).padStart(2, "0"); // 초
+        const t = String(ms % 10); // 0.1초 단위
+        digital.textContent = `${m}:${s}:${t}`;
 
-        // 초침이 1초에 한 바퀴(360도) 돌도록
-        const deg = (sec % 1) * 360; // 항상 0이므로 아래처럼 수정
+        // 초침 회전
+        const deg = (ms % 10) * 36;
         document.querySelector(
           ".second"
-        ).style.transform = `translate(-50%, 0) rotate(${
-          (sec * 360) % 360
-        }deg)`;
+        ).style.transform = `translate(-50%, 0) rotate(${deg}deg)`;
       }
 
       btns[0].addEventListener("click", () => {
         if (timerId) return;
         timerId = setInterval(() => {
-          sec++;
+          ms++; // 0.1초씩 증가
           updateStopwatch();
-        }, 1000);
+        }, 100);
       });
 
       btns[1].addEventListener("click", () => {
