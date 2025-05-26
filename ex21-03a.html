@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let counter = 0;
+        let isCounnect = false;
+
+        const h1 = document.querySelector("h1");
+        const p = document.querySelector("p");
+        const connectButton = document.querySelector("#connect");
+        const disconnectButton = document.querySelector("#disconnect");
+        const listener = (event) => {
+          h1.textContent = -`클릭 횟수: ${++counter}`;
+        };
+
+        connectButton.addEventListener("click", () => {
+          if (isCounnect === false) {
+            h1.addEventListener("click", listener);
+            p.textContent = "클릭 이벤트 : 연결";
+            isCounnect = true;
+          }
+        });
+
+        disconnectButton.addEventListener("click", () => {
+          if (isCounnect === true) {
+            h1.addEventListener("click", listener);
+            p.textContent = "클릭 이벤트 : 해제";
+            isCounnect = false;
+          }
+        });
+      });
+    </script>
+    <style>
+      h1 {
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>클릭횟수:0</h1>
+    <button id="connect">클릭 이벤트 연결</button>
+    <button id="disconnect">클릭 이벤트 해제</button>
+    <p>클릭 이벤트 : 해제</p>
+  </body>
+</html>
