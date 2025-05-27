@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또 번호 생성기</title>
+    <style>
+      :root {
+        --bg: #3c465c;
+        --primary: #78ffcd;
+        --solid: #fff;
+        --btn-w: 12em;
+        --dot-w: calc(var(--btn-w) * 0.2);
+        --tr-X: calc(var(--btn-w) - var(--dot-w));
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background: var(--bg);
+        color: var(--solid);
+        padding-top: 60px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        position: relative;
+        width: var(--btn-w);
+        padding: 14px 0;
+        color: var(--primary);
+        background: transparent;
+        border: 0.15em solid var(--primary);
+        border-radius: 5em;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        overflow: hidden;
+        user-select: none;
+      }
+
+      .btn .dot {
+        position: absolute;
+        top: 0;
+        width: var(--dot-w);
+        height: 100%;
+        border-radius: 50%;
+        display: none;
+      }
+
+      .dot::after {
+        content: "";
+        position: absolute;
+        left: calc(50% - 0.4em);
+        top: -0.4em;
+        height: 0.8em;
+        width: 0.8em;
+        background: var(--primary);
+        border-radius: 1em;
+        border: 0.25em solid var(--solid);
+        box-shadow: 0 0 0.7em var(--solid), 0 0 2em var(--primary);
+      }
+
+      .btn:hover .dot,
+      .btn:focus .dot {
+        display: block;
+        animation: atom 2s infinite linear;
+      }
+
+      @keyframes atom {
+        0% {
+          transform: translateX(0) rotate(0);
+        }
+        30% {
+          transform: translateX(var(--tr-X)) rotate(0);
+        }
+        50% {
+          transform: translateX(var(--tr-X)) rotate(180deg);
+        }
+        80% {
+          transform: translateX(0) rotate(180deg);
+        }
+        100% {
+          transform: translateX(0) rotate(360deg);
+        }
+      }
+
+      #lotto-result {
+        margin-top: 30px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .ball {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      /* 알록달록한 색상 */
+      .ball:nth-child(1) {
+        background: #f67280;
+      }
+      .ball:nth-child(2) {
+        background: #ffafcc;
+      }
+      .ball:nth-child(3) {
+        background: #a29bfe;
+      }
+      .ball:nth-child(4) {
+        background: #55efc4;
+      }
+      .ball:nth-child(5) {
+        background: #ffeaa7;
+        color: #333;
+      }
+      .ball:nth-child(6) {
+        background: #74b9ff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🌈 로또 번호 생성기 🎉</h1>
+    <p>상위 출현 번호 기반 추천: [34, 12, 27, 13, 33, 17, 43, 1]</p>
+
+    <div class="btn" onclick="generateLotto()">
+      <span>로또 번호 생성</span>
+      <div class="dot"></div>
+    </div>
+
+    <div id="lotto-result"></div>
+
+    <script>
+      function generateLotto() {
+        const topNumbers = [34, 12, 27, 33, 13, 17, 43, 20];
+        const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+
+        let weightedPool = [];
+        for (let n of allNumbers) {
+          if (topNumbers.includes(n)) {
+            weightedPool.push(n, n, n, n); // 가중치 4배
+          } else {
+            weightedPool.push(n);
+          }
+        }
+
+        let picked = [];
+        while (picked.length < 6) {
+          const n =
+            weightedPool[Math.floor(Math.random() * weightedPool.length)];
+          if (!picked.includes(n)) picked.push(n);
+        }
+        picked.sort((a, b) => a - b);
+
+        const container = document.getElementById("lotto-result");
+        container.innerHTML = "";
+
+        picked.forEach((num) => {
+          const ball = document.createElement("div");
+          ball.className = "ball";
+          ball.textContent = num;
+          container.appendChild(ball);
+        });
+      }
+    </script>
+  </body>
+</html>
