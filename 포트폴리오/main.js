@@ -12,19 +12,34 @@ document.addEventListener('scroll', () => {
     }
 });
 
-// Handle scrolling when tapping on the navbar menu
-const navbarMenu = document.querySelector('.navbar__menu');
-navbarMenu.addEventListener('click', (event) => {
-	const target = event.target;
-	const link = target.dataset.link;
+// // Handle scrolling when tapping on the navbar menu
+// const navbarMenu = document.querySelector('.navbar__menu');
+// navbarMenu.addEventListener('click', (event) => {
+// 	const target = event.target;
+// 	const link = target.dataset.link;
 
-	if (link == null) {
-		return;
-	}
-    navbarMenu.classList.remove('open');
-	scrollIntoView(link);
+// 	if (link == null) {
+// 		return;
+// 	}
+//     navbarMenu.classList.remove('open');
+// 	scrollIntoView(link);
+// });
+document.querySelectorAll('.navbar__menu__item').forEach(item => {
+  item.addEventListener('click', event => {
+    const targetId = event.target.dataset.link; // data-link 속성 값 가져오기
+    if (targetId) {
+      const targetElement = document.querySelector(targetId);
+      const navbarHeight = document.getElementById('navbar').offsetHeight; // Navbar 높이 가져오기
+
+      // 스크롤 위치 조정
+      const targetPosition = targetElement.offsetTop - navbarHeight;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth', // 부드러운 스크롤
+      });
+    }
+  });
 });
-
 // Handle click on "contact me" button on home
 const homeContactBtn = document.querySelector('.home__contact');
 homeContactBtn.addEventListener('click', () => {
