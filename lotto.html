@@ -13,12 +13,10 @@
         --dot-w: calc(var(--btn-w) * 0.2);
         --tr-X: calc(var(--btn-w) - var(--dot-w));
       }
-
       * {
         box-sizing: border-box;
         font-family: "Segoe UI", sans-serif;
       }
-
       body {
         height: 100vh;
         margin: 0;
@@ -30,17 +28,14 @@
         color: var(--solid);
         padding-top: 60px;
       }
-
       h1 {
         font-size: 2.5rem;
         margin-bottom: 10px;
       }
-
       p {
         font-size: 1.1rem;
         margin-bottom: 30px;
       }
-
       .btn {
         position: relative;
         width: var(--btn-w);
@@ -57,7 +52,6 @@
         overflow: hidden;
         user-select: none;
       }
-
       .btn .dot {
         position: absolute;
         top: 0;
@@ -66,7 +60,6 @@
         border-radius: 50%;
         display: none;
       }
-
       .dot::after {
         content: "";
         position: absolute;
@@ -79,13 +72,11 @@
         border: 0.25em solid var(--solid);
         box-shadow: 0 0 0.7em var(--solid), 0 0 2em var(--primary);
       }
-
       .btn:hover .dot,
       .btn:focus .dot {
         display: block;
         animation: atom 2s infinite linear;
       }
-
       @keyframes atom {
         0% {
           transform: translateX(0) rotate(0);
@@ -103,15 +94,13 @@
           transform: translateX(0) rotate(360deg);
         }
       }
-
       #lotto-result {
         margin-top: 30px;
         display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
       }
-
       .ball {
         width: 50px;
         height: 50px;
@@ -124,8 +113,6 @@
         justify-content: center;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       }
-
-      /* 알록달록한 색상 */
       .ball:nth-child(1) {
         background: #f67280;
       }
@@ -149,46 +136,49 @@
   </head>
   <body>
     <h1>🌈 로또 번호 생성기 🎉</h1>
-    <p>상위 출현 번호 기반 추천: [34, 12, 27, 13, 33, 17, 43, 1]</p>
-
-    <div class="btn" onclick="generateLotto()">
-      <span>로또 번호 생성</span>
+    <p>상위 출현 번호: [34, 12, 27, 13, 33, 17, 43, 1]</p>
+    <div class="btn" onclick="generateLotto10()">
+      <span>로또 번호 10세트 생성</span>
       <div class="dot"></div>
     </div>
-
     <div id="lotto-result"></div>
-
     <script>
-      function generateLotto() {
+      function generateLotto10() {
         const topNumbers = [34, 12, 27, 33, 13, 17, 43, 20];
         const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-
-        let weightedPool = [];
-        for (let n of allNumbers) {
-          if (topNumbers.includes(n)) {
-            weightedPool.push(n, n, n, n); // 가중치 4배
-          } else {
-            weightedPool.push(n);
+        let html = "";
+        for (let t = 0; t < 10; t++) {
+          let weightedPool = [];
+          for (let n of allNumbers) {
+            if (topNumbers.includes(n)) {
+              weightedPool.push(n, n, n, n);
+            } else {
+              weightedPool.push(n);
+            }
           }
+          let picked = [];
+          while (picked.length < 6) {
+            const n =
+              weightedPool[Math.floor(Math.random() * weightedPool.length)];
+            if (!picked.includes(n)) picked.push(n);
+          }
+          picked.sort((a, b) => a - b);
+          html += `<div style="display:flex;gap:12px;margin-bottom:0;">`;
+          picked.forEach((num, idx) => {
+            html += `<div class="ball" style="background:${
+              [
+                "#f67280",
+                "#ffafcc",
+                "#a29bfe",
+                "#55efc4",
+                "#ffeaa7",
+                "#74b9ff",
+              ][idx]
+            };color:${idx === 4 ? "#333" : "#fff"}">${num}</div>`;
+          });
+          html += `</div>\n`;
         }
-
-        let picked = [];
-        while (picked.length < 6) {
-          const n =
-            weightedPool[Math.floor(Math.random() * weightedPool.length)];
-          if (!picked.includes(n)) picked.push(n);
-        }
-        picked.sort((a, b) => a - b);
-
-        const container = document.getElementById("lotto-result");
-        container.innerHTML = "";
-
-        picked.forEach((num) => {
-          const ball = document.createElement("div");
-          ball.className = "ball";
-          ball.textContent = num;
-          container.appendChild(ball);
-        });
+        document.getElementById("lotto-result").innerHTML = html;
       }
     </script>
   </body>
