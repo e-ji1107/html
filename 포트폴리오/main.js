@@ -5,7 +5,7 @@ const navbar = document.querySelector('#navbar');
 const navbarHeight = navbar.getBoundingClientRect().height;
 
 document.addEventListener('scroll', () => {
-    if(window.scrollY >= navbarHeight) {
+    if (window.scrollY >= navbarHeight) {
         navbar.classList.add('navbar--dark');
     } else {
         navbar.classList.remove('navbar--dark');
@@ -25,20 +25,20 @@ document.addEventListener('scroll', () => {
 // 	scrollIntoView(link);
 // });
 document.querySelectorAll('.navbar__menu__item').forEach(item => {
-  item.addEventListener('click', event => {
-    const targetId = event.target.dataset.link; // data-link 속성 값 가져오기
-    if (targetId) {
-      const targetElement = document.querySelector(targetId);
-      const navbarHeight = document.getElementById('navbar').offsetHeight; // Navbar 높이 가져오기
+    item.addEventListener('click', event => {
+        const targetId = event.target.dataset.link; // data-link 속성 값 가져오기
+        if (targetId) {
+            const targetElement = document.querySelector(targetId);
+            const navbarHeight = document.getElementById('navbar').offsetHeight; // Navbar 높이 가져오기
 
-      // 스크롤 위치 조정
-      const targetPosition = targetElement.offsetTop - navbarHeight;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth', // 부드러운 스크롤
-      });
-    }
-  });
+            // 스크롤 위치 조정
+            const targetPosition = targetElement.offsetTop - navbarHeight;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth', // 부드러운 스크롤
+            });
+        }
+    });
 });
 // Handle click on "contact me" button on home
 const homeContactBtn = document.querySelector('.home__contact');
@@ -57,7 +57,7 @@ document.addEventListener('scroll', () => {
 // Show arrow-up btn when scrolling 
 const arrowUp = document.querySelector('.arrow-up');
 document.addEventListener('scroll', () => {
-    if(window.scrollY > homeHeight / 2) {
+    if (window.scrollY > homeHeight / 2) {
         arrowUp.classList.add('visible');
     } else {
         arrowUp.classList.remove('visible');
@@ -132,7 +132,7 @@ const sectionIds = [
     '#home',
     '#about',
     '#myWork',
-    '#contact', 
+    '#contact',
 ];
 
 const sections = sectionIds.map(id => document.querySelector(id));
@@ -167,7 +167,7 @@ const observerCallback = (entries, observer) => {
     entries.forEach((entry) => {
         if (!entry.isIntersecting && entry.intersectionRatio > 0) {
             const index = sectionIds.indexOf(`#${entry.target.id}`);
-            
+
             // 스크롤링이 아래로 되어서 페이지가 올라옴
             if (entry.boundingClientRect.y < 0) {
                 selectedNavIndex = index + 1;
@@ -185,7 +185,7 @@ window.addEventListener('wheel', () => {
     // 제일 위에 있다면
     if (window.scrollY === 0) {
         selectedNavIndex = 0;
-    } 
+    }
     // 제일 밑에 있다면
     else if (Math.ceil(window.scrollY + window.innerHeight) >= document.body.clientHeight) {
         selectedNavIndex = navItmes.length - 1;
